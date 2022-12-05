@@ -7,22 +7,30 @@ import boxes from './boxes';
 export default function App() {
   const [squares, setSquares] = React.useState(boxes);
 
+  // function toggle(id) {
+  //   setSquares(prevSquare => {
+  //     const newSquares = [];
+  //     for(let i = 0; i < prevSquare.length; i++) {
+  //       const currentSquare = prevSquare[i];
+  //       if(currentSquare.id === id) {
+  //         const updatedSquare = {
+  //           ...currentSquare,
+  //           on: currentSquare.on ? false : true
+  //         }
+  //         newSquares.push(updatedSquare);
+  //       } else {
+  //         newSquares.push(currentSquare);
+  //       }
+  //     }
+  //     return newSquares;
+  //   })
+  // }
+
   function toggle(id) {
     setSquares(prevSquare => {
-      const newSquares = [];
-      for(let i = 0; i < prevSquare.length; i++) {
-        const currentSquare = prevSquare[i];
-        if(currentSquare.id === id) {
-          const updatedSquare = {
-            ...currentSquare,
-            on: currentSquare.on ? false : true
-          }
-          newSquares.push(updatedSquare);
-        } else {
-          newSquares.push(currentSquare);
-        }
-      }
-      return newSquares;
+      return prevSquare.map(square => {
+        return square.id === id ? {...square, on: !square.on} : square
+      })
     })
   }
 
